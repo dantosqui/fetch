@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
+import './userslist.css'
 
 const UsersList = () => {
   const urlApi = "https://randomuser.me/api/?results=5";
@@ -14,15 +15,24 @@ const UsersList = () => {
   return (
     <div>
       <h1>Listado: </h1>
-      <div id="listacards"></div>
+      <div id="listacards">
       
-      <Card></Card>
-      <ul>
-        {" "}
-        {users.map((user, index) => (
-          <li key={index}>{user.name.first}</li>
-        ))}
-      </ul>
+
+      {users.map((user,index) => (
+        <Card nameCompleto={user.name.title+ " "+ user.name.first+ " "+ user.name.last} 
+        email={user.email}
+        username={user.login.username}
+        foto={user.picture.medium}
+        fotoperogrande={user.picture.large}
+        address={user.location.street.name + " " + user.location.street.number}
+        country={user.location.country}
+        ></Card>
+      ))}
+      </div>
+        
+        
+        
+      
     </div>
   );
 };
